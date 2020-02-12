@@ -2,27 +2,12 @@
 # currently.
 
 
-class Avatar:
+class Player:
     def __init__(self, name, room):
         self.name = name
         self.room = room
 
-    def forward(self):
-        print("?")
 
-    def backward(self):
-        print("?")
-
-    def left(self):
-        print("?")
-
-    def right(self):
-        print("?")
-
-
-class Explorer(Avatar):
+class Explorer(Player):
     def __init__(self, name, room):
         super().__init__("John", "Outside", name, room)
-
-    def walk(self):
-        print(f"{self.name} is going to a new room!")
