@@ -1,6 +1,9 @@
 from room import Room
 from player import Player
+
+
 # Declare all the rooms
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -24,6 +27,7 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
+
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -38,8 +42,14 @@ room['treasure'].s_to = room['narrow']
 #
 
 
+# Message functionality
+
+
 def alert(message):
     print(f"{message}")
+
+
+# Notifying the player they're in a new room
 
 
 def new_room():
@@ -47,7 +57,37 @@ def new_room():
     alert(f"{player.room.description}\n")
 
 
+# Direction Options
+
+
+def direction_options():
+    alert(
+        f"""Directions:
+        Press N to go North
+        Press S to go South
+        Press E to go East
+        Press W to go West
+        Press Q to Quit
+        """
+    )
+
+
+# Wrong Way Functionality
+
+
+def direction_failure(direction):
+    if direction == "N":
+        alert("Sorry, this way is blocked, try another route!\n")
+    elif direction == "S":
+        alert("Sorry, this way is blocked, try another route!\n")
+    elif direction == "E":
+        alert("Sorry, this way is blocked, try another route!\n")
+    elif direction == "W":
+        alert("Sorry, this way is blocked, try another route!\n")
+
+
 # Make a new player object that is currently in the 'outside' room.
+
 
 player_name = input("Enter your name: ")
 player = Player(player_name, room["outside"])
