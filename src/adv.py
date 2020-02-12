@@ -57,33 +57,30 @@ def new_room():
     alert(f"{player.room.description}\n")
 
 
-# Direction Options
-
-
-def direction_options():
-    alert(
-        f"""Directions:
-        Press N to go North
-        Press S to go South
-        Press E to go East
-        Press W to go West
-        Press Q to Quit
-        """
-    )
-
-
 # Wrong Way Functionality
 
 
 def direction_failure(direction):
-    if direction == "N":
+    if direction == "w":
         alert("Sorry, this way is blocked, try another route!\n")
-    elif direction == "S":
+    elif direction == "s":
         alert("Sorry, this way is blocked, try another route!\n")
-    elif direction == "E":
+    elif direction == "e":
         alert("Sorry, this way is blocked, try another route!\n")
-    elif direction == "W":
+    elif direction == "w":
         alert("Sorry, this way is blocked, try another route!\n")
+
+
+# Trying to enter a new room functionality
+
+
+def move_player(direction, room):
+    attribute = direction + "_to"
+    if hasattr(room, attribute):
+        return getattr(room, attribute)
+    else:
+        direction_failure(direction)
+        return room
 
 
 # Make a new player object that is currently in the 'outside' room.
@@ -91,7 +88,7 @@ def direction_failure(direction):
 
 player_name = input("Enter your name: ")
 player = Player(player_name, room["outside"])
-
+new_room()
 
 # Write a loop that:
 #
@@ -103,3 +100,16 @@ player = Player(player_name, room["outside"])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    action = input(
+        f"Choose a direction to get started! (N, S, E or W): ")
+
+    if action in ["n", "s", "e", "w"]:
+        player.room = move_player(action, player.room)
+        new_room()
+        continue
+
+    elif action == "Q":
+        print("You have been SACRIFICED! GAME OVER")
+        break
