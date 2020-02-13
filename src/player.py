@@ -3,11 +3,10 @@
 
 
 class Player:
-    def __init__(self, name, room):
+    def __init__(self, name, current_room):
         self.name = name
-        self.room = room
+        self.current_room = current_room
+        self.item_list = []
 
-
-class Explorer(Player):
-    def __init__(self, name, room):
-        super().__init__("John", "Outside", name, room)
+    # def __str__(self):
+    #     return f"Player: {self.name}, Room: {self.room.name}...{self.room.description} Item Found: {self.room.item_list}"
